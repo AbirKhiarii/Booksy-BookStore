@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package booksy;
+package booksy.controller;
 
 import booksy.entities.Commande;
 import booksy.service.ServiceCommande;
@@ -29,7 +29,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
  *
  * @author lenovo
  */
-public class FXMLDocumentController implements Initializable {
+public class OrderController implements Initializable {
     
     private Label label;
     @FXML
@@ -82,7 +82,7 @@ public class FXMLDocumentController implements Initializable {
             d.setStatut(tfStatut.getText());
             sp.ajouterCommande(d);
         } catch (ParseException ex) {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(OrderController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -114,7 +114,7 @@ public class FXMLDocumentController implements Initializable {
             d.setStatut(tfStatut.getText());
             sp.supprimerCommande(d);
         } catch (ParseException ex) {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(OrderController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
@@ -130,7 +130,7 @@ public class FXMLDocumentController implements Initializable {
             d.setStatut(tfStatut.getText());
             sp.modifierCommande(d);
         } catch (ParseException ex) {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(OrderController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
