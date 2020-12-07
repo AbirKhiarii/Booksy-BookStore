@@ -5,10 +5,13 @@
  */
 package booksy.interfaces;
 
+import booksy.entities.Bookemp;
+import java.util.List;
+
 /**
  *
  * @author user
  */
 public interface InterfaceBookService {
-    
+
 }

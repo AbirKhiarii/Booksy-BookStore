@@ -5,6 +5,11 @@
  */
 package booksy;
 
+import booksy.entities.Bookemp;
+import booksy.service.BookempService;
+import booksy.utils.MyConnexion;
+import java.text.SimpleDateFormat;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -31,7 +36,12 @@ public class Booksy extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        launch(args);
+          MyConnexion cnx= MyConnexion.getInstance();
+     
+         
+           launch(args);
+      
+        
     }
     
 }
