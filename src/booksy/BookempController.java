@@ -28,12 +28,13 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import static java.lang.Integer.parseInt;
 
 /**
  *
  * @author user
  */
-public class FXMLDocumentController implements Initializable {
+public class BookempController implements Initializable {
     
     private Label label;
     @FXML
@@ -149,7 +150,7 @@ public class FXMLDocumentController implements Initializable {
             s.ajouterBookEmp(B);
              afficher();
         } catch (ParseException ex) {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BookempController.class.getName()).log(Level.SEVERE, null, ex);
         }
         afficher();
     }
