@@ -16,6 +16,7 @@ import java.util.logging.Logger;
  * @author lenovo
  */
 public class MyConnexion {
+
      private String url="jdbc:mysql://localhost:3306/Booksy";
     private String user = "root";
     private String pwd = "";

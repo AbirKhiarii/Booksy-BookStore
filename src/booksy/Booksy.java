@@ -5,6 +5,9 @@
  */
 package booksy;
 
+import booksy.entities.Book;
+import booksy.service.BookService;
+import java.sql.Date;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
@@ -20,7 +23,9 @@ public class Booksy extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
+
         Parent root = FXMLLoader.load(getClass().getResource("controller/OrderView.fxml"));
+
         
         Scene scene = new Scene(root);
         
@@ -33,6 +38,11 @@ public class Booksy extends Application {
      */
     public static void main(String[] args) {
         launch(args);
+       /* BookService sp =new BookService();
+        Book p = new Book("ISBN","titre"," auteur","",new Date(2020,1,1), 1.15, 5, "image", "marque", " versionpdf", "odcast","categorie");
+        sp.ajouterLivre(p);
+        sp.supprimerLivre("azertt");
+        sp.afficherLivre();*/
     }
     
 }
