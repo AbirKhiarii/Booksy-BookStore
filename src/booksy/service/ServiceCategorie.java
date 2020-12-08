@@ -7,7 +7,7 @@ package booksy.service;
 
 import booksy.entities.Categorie;
 import booksy.interfaces.InterfaceCategorie;
-import booksy.utils.myConnexion;
+import booksy.utils.MyConnexion;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,9 +20,9 @@ import javafx.collections.ObservableList;
  * @author oumayma
  */
 public class ServiceCategorie implements InterfaceCategorie {
-    myConnexion cnx;
+    MyConnexion cnx;
 public ServiceCategorie(){
-     cnx=myConnexion.getInstance();
+     cnx=MyConnexion.getInstance();
     
 }
 
