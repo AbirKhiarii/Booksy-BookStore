@@ -8,6 +8,9 @@ package booksy;
 import booksy.entities.Book;
 import booksy.service.BookService;
 import java.sql.Date;
+
+import booksy.utils.MyConnexion;
+
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
@@ -26,6 +29,7 @@ public class Booksy extends Application {
 
         Parent root = FXMLLoader.load(getClass().getResource("controller/OrderView.fxml"));
 
+
         
         Scene scene = new Scene(root);
         
@@ -43,6 +47,7 @@ public class Booksy extends Application {
         sp.ajouterLivre(p);
         sp.supprimerLivre("azertt");
         sp.afficherLivre();*/
+       // MyConnexion cnx=new MyConnexion();
     }
     
 }

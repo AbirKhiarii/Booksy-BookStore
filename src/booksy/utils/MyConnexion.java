@@ -8,14 +8,17 @@ package booksy.utils;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 
 /**
  *
  * @author lenovo
  */
 public class MyConnexion {
+
 
      private String url="jdbc:mysql://localhost:3306/Booksy";
     private String user = "root";
