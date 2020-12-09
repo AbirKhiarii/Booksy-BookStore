@@ -37,7 +37,7 @@ public class BookService implements InterfaceBookService{
         try {
            String req;
             req = "INSERT INTO booktobuy (ISBN,titre,auteur,description,edition,prix,quantite,image,marque,versionpdf ,podcast,Categorie_id )values(?,?,?,?,?,?,?,?,?,?,?,?)";
-            PreparedStatement ps= cnx.getConnexion().prepareStatement(req);
+            PreparedStatement ps= cnx.getConnection().prepareStatement(req);
            
             ps.setObject(1,p.getISBN());
             ps.setObject(2,p.getTitre());
@@ -65,7 +65,7 @@ public class BookService implements InterfaceBookService{
     public void supprimerLivre(String isbn) {
     try {
             String req = "DELETE FROM `booktobuy` WHERE ISBN="+"'"+isbn+"'";
-            PreparedStatement ps= cnx.getConnexion().prepareStatement(req);
+            PreparedStatement ps= cnx.getConnection().prepareStatement(req);
              ps.executeUpdate();
             //System.out.println(row);
             System.out.println("Supprimer avec succés");
@@ -78,7 +78,7 @@ public class BookService implements InterfaceBookService{
        ObservableList<Book> l = FXCollections.observableArrayList();
         try {
             String req = "select * from booktobuy ";
-            Statement s = cnx.getConnexion().createStatement();
+            Statement s = cnx.getConnection().createStatement();
             ResultSet rs=s.executeQuery(req);
             while (rs.next())
             { Book b = new Book() ;

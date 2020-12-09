@@ -25,7 +25,7 @@ public class servicepersonne implements interfacepersonne {
     
    MyConnexion cnx ;
     public servicepersonne(){
-    cnx = MyConnexion .getinstance();
+    cnx = MyConnexion.getInstance();
     //  WSystem.out.println("connexion etablie");
     }
     
@@ -33,7 +33,7 @@ public class servicepersonne implements interfacepersonne {
     public void ajouterPersonne(personne p){
         try {
             String req="INSERT INTO `per`(`nom`, `prenom`, `sexe`, `email`, `motdepasse`, `telephone`) VALUES (?,?,?,?,?,?)";
-            PreparedStatement ps = cnx.getconnection().prepareStatement(req);
+            PreparedStatement ps = cnx.getConnection().prepareStatement(req);
             ps.setString(1 , p.getNom());
             ps.setString(2 , p.getPrenom());
             ps.setString(3 , p.getSex());
@@ -97,7 +97,7 @@ public class servicepersonne implements interfacepersonne {
     public void supprimerPersonne(int id)  {
         try {
             String req2 = "delete from per where id ="+id;
-            PreparedStatement ps = cnx.getconnection().prepareStatement(req2);
+            PreparedStatement ps = cnx.getConnection().prepareStatement(req2);
              ps.executeUpdate();
              System.out.println("élément supprimé avec succées");
         } catch (SQLException ex) {
@@ -110,7 +110,7 @@ public class servicepersonne implements interfacepersonne {
     public void modifierPersonne(personne p) {
         try {
             String req3= "update `per` set `nom`=?,`prenom`=?,`sexe`=?,`email`=?,`motdepasse`=?,`telephone`=? where id=?";
-             PreparedStatement ps = cnx.getconnection().prepareStatement(req3);
+             PreparedStatement ps = cnx.getConnection().prepareStatement(req3);
              ps.setString(1 , p.getNom());
              ps.setString(2 , p.getPrenom());
              ps.setString(3 , p.getSex());

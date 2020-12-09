@@ -5,10 +5,16 @@
  */
 package booksy.interfaces;
 
+import booksy.entities.Bookemp;
+import java.util.List;
+
 /**
  *
  * @author uuuu
  */
 public interface InterfaceBookempService {
-    
+         public void ajouterBookEmp(Bookemp B);
+      public void modifierBookEmp(Bookemp B, String ISBN);
+      public void supprimerBookEmp(Bookemp B, String ISBN);
+      public List<Bookemp> afficherBookEmp();
 }
