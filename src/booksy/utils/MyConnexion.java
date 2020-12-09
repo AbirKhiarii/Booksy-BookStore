@@ -20,31 +20,30 @@ import java.util.logging.Logger;
 public class MyConnexion {
 
 
-     private String url="jdbc:mysql://localhost:3306/Booksy";
+    private String url = "jdbc:mysql://localhost:3306/Booksy";
     private String user = "root";
     private String pwd = "";
     private Connection connexion;
     private static MyConnexion instance;
-    
-    private MyConnexion()
-        {
+
+    private MyConnexion() {
         try {
-            connexion= DriverManager.getConnection(url, user, pwd);
+            connexion = DriverManager.getConnection(url, user, pwd);
             System.out.println("Connexion etablit");
         } catch (SQLException ex) {
             //Logger.getLogger(MyConnexion.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("Vous ne pouvez pas se connecter");
         }
-        }
-    
-    public static MyConnexion getInstance(){
-        if (instance==null){
-            instance= new MyConnexion();
+    }
+
+    public static MyConnexion getInstance() {
+        if (instance == null) {
+            instance = new MyConnexion();
         }
         return instance;
     }
-    
-    public Connection getConnection(){
+
+    public Connection getConnection() {
         return connexion;
     }
 }
