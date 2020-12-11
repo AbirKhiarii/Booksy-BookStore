@@ -13,7 +13,8 @@ import javafx.collections.ObservableList;
  * @author user
  */
 public interface InterfaceBookService {
-public void ajouterLivre (Book p);
+public Boolean ajouterLivre (Book p);
 public void supprimerLivre(String p);
 public ObservableList<Book> afficherLivre();
+//public void modifier(String isbn);
 }

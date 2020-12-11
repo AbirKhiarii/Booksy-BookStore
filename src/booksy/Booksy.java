@@ -8,11 +8,7 @@ package booksy;
 import booksy.entities.Book;
 import booksy.service.BookService;
 import java.sql.Date;
-
-import booksy.utils.MyConnexion;
-
 import javafx.application.Application;
-import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -20,19 +16,16 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author lenovo
+ * @author user
  */
 public class Booksy extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-
-        Parent root = FXMLLoader.load(getClass().getResource("Bookemp.fxml"));
-
-
+        
+        Parent root = FXMLLoader.load(getClass().getResource("authentification.fxml"));
         
         Scene scene = new Scene(root);
-        
         stage.setScene(scene);
         stage.show();
     }
@@ -47,7 +40,6 @@ public class Booksy extends Application {
         sp.ajouterLivre(p);
         sp.supprimerLivre("azertt");
         sp.afficherLivre();*/
-       // MyConnexion cnx=new MyConnexion();
     }
     
 }

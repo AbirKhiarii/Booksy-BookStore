@@ -8,6 +8,12 @@ package booksy.service;
 import booksy.entities.livreAVendre;
 import booksy.interfaces.LAVInterface;
 import booksy.utils.MyConnexion;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,6 +23,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.json.JSONObject;
 
 
 /**
@@ -29,6 +36,32 @@ public class LAVService implements LAVInterface{
     public LAVService() {
         cnx=MyConnexion.getInstance();
     }
+    public String convert(Double dt,String curr) throws MalformedURLException, IOException
+  {
+      String resp="";
+
+        URL yahoo = new URL("https://api.exchangeratesapi.io/latest");
+        URLConnection yc = yahoo.openConnection();
+        BufferedReader in = new BufferedReader(
+                                new InputStreamReader(
+                                yc.getInputStream()));
+        String inputLine;
+
+        while ((inputLine = in.readLine()) != null)
+            resp+=inputLine;
+            System.out.println(inputLine);
+        in.close();
+      System.out.println(resp);
+        JSONObject jsonObj = new JSONObject(resp);
+        Double name = jsonObj.getJSONObject("rates").getDouble(curr);
+        Double pp=name*dt;
+        
+              double a=Math.round(pp * 100);
+                pp = a/100;
+       
+       String result = pp.toString();
+return result;
+  }
     @Override
     public void ajouterLAV(livreAVendre lav) {
 try {
@@ -106,7 +139,9 @@ ObservableList<livreAVendre> l=FXCollections.observableArrayList();
         } catch (SQLException ex) {
             System.err.println("errrr");
         }
-        return l;    } 
+        return l;    }
+    
+    
 }
     
     

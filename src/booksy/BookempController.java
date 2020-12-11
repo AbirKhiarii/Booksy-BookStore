@@ -8,6 +8,9 @@ package booksy;
 import booksy.entities.Bookemp;
 import booksy.service.BookempService;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import static java.lang.Double.parseDouble;
 import static java.lang.Integer.parseInt;
 import java.net.URL;
@@ -29,6 +32,11 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import static java.lang.Integer.parseInt;
+import javafx.scene.control.CheckBox;
+import static javafx.scene.input.KeyCode.B;
+import javafx.stage.FileChooser;
+import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -81,20 +89,26 @@ public class BookempController implements Initializable {
     private Button btmodifier;
     @FXML
     private Button btannuler;
+    @FXML
+    private TableColumn<Bookemp, String> idimage;
+    @FXML
+    private CheckBox idremise;
     
     @FXML
-    private void handleButtonAction(ActionEvent event) {
+    private void handleButtonAction(ActionEvent event) throws Exception {
      if (event.getSource()==this.btajouter)
      { 
           ajouterBookEmp();
-         
+         JOptionPane.showMessageDialog(null, "Ajouté avec succès");
      }
      else if (event.getSource()==this.btmodifier){
            modifierBookEmp();
+             JOptionPane.showMessageDialog(null, "Modifié avec succès");
         
     }
      else if (event.getSource()==this.btsupprimer){
              supprimerBookEmp();
+               JOptionPane.showMessageDialog(null, "Supprimé avec succès");
              }
      
      
@@ -115,23 +129,16 @@ public class BookempController implements Initializable {
        this.idprix.setCellValueFactory(new PropertyValueFactory <Bookemp , Double>("prix"));
        this.idquantite.setCellValueFactory(new PropertyValueFactory <Bookemp , Integer>("quantite"));
        this.idedi.setCellValueFactory(new PropertyValueFactory <Bookemp , Date>("edition"));
-         this.iddesc.setCellValueFactory(new PropertyValueFactory <Bookemp , String>("description"));
-         
-         
+       this.iddesc.setCellValueFactory(new PropertyValueFactory <Bookemp , String>("description"));
+       this.idimage.setCellValueFactory(new PropertyValueFactory <Bookemp , String>("image"));
        this.idtableview.setItems(B);
        
-       
-       
-     
-       
-       
-    
-    
-    }
+     }
 
-    private void ajouterBookEmp() {
+    private void ajouterBookEmp() throws Exception {
+                 BookempService s = new BookempService();
         try {
-            BookempService s = new BookempService();
+   
             
             Bookemp B = new Bookemp();
             B.setISBN(tfISBN.getText());
@@ -143,17 +150,17 @@ public class BookempController implements Initializable {
             B.setPrix(parseDouble(tfprix.getText()));
             B.setEdition(new SimpleDateFormat("yyyy-MM-dd").parse(tfedi.getText()));
             B.setImage(tfimage.getText());
-            
-            
-            
-            
-            s.ajouterBookEmp(B);
+         
+          s.ajouterBookEmp(B);
+          
              afficher();
+             s.sendMail();
+        
         } catch (ParseException ex) {
             Logger.getLogger(BookempController.class.getName()).log(Level.SEVERE, null, ex);
         }
         afficher();
-    }
+        }
 
     private void supprimerBookEmp() {
         BookempService s = new BookempService();
@@ -176,10 +183,12 @@ public class BookempController implements Initializable {
             B.setDescription(tfdesc.getText());
             B.setQuantite(parseInt(this.tfquan.getText()));
             B.setPrix(parseDouble(tfprix.getText()));
-           B.setEdition(Date.valueOf(this.tfedi.getText()));
-           //ss B.setImage(tfimage.getText());
+            B.setEdition(Date.valueOf(this.tfedi.getText()));
+            B.setImage(tfimage.getText());
             s.modifierBookEmp(B,this.tfISBN.getText());   
-          this.afficher();
+            this.afficher();
+          if(this.idremise.isPressed())
+              remise();
     }
     
     
@@ -199,6 +208,8 @@ public class BookempController implements Initializable {
         this.tfquan.setText("");
          this.tfedi.setText("");
           this.tfmarque.setText("");
+          this.tfimage.setText("");
+
     }
 
   
@@ -210,9 +221,6 @@ public class BookempController implements Initializable {
         Bookemp B=this.idtableview.getSelectionModel().getSelectedItem();
         if(B!=null)
         {
-           
-
-                          
             this.tfISBN.setText(B.getISBN());
             this.tfauteur.setText(B.getAuteur());
             this.tftitre.setText(B.getTitre());
@@ -220,11 +228,49 @@ public class BookempController implements Initializable {
             this.tfdesc.setText(B.getDescription());
             this.tfquan.setText(Integer.toString(B.getQuantite()));
             this.tfprix.setText(Double.toString(B.getPrix()));
-            this.idedi.setText(B.getEdition().toString());
+            this.tfedi.setText(B.getEdition().toString());
+            this.tfimage.setText(B.getImage());
  
         }
     }
+
+  
+
+    @FXML
+    private void parcourir(ActionEvent event) throws IOException {
+        
+       FileChooser fc = new FileChooser();
+    File select = fc.showOpenDialog(null);
+    if ( select !=null)
+    {Bookemp p =new Bookemp();
+        String image = select.getAbsolutePath();
+        this.tfimage.setText(image);
+        System.out.println(image);
+    
+    
+        /* FileChooser.ExtensionFilter typejpg = new FileChooser.ExtensionFilter("JPG filter","*.JPG");
+          FileChooser.ExtensionFilter typePNG = new FileChooser.ExtensionFilter("PNG filter","*.PNG");
+          fc.getExtensionFilters().addAll(typejpg,typePNG);
+          File file = fc.showOpenDialog(null);
+          BufferedImage bfimg=ImageIO.read(file);
+          conteneurImage.setImage(image);*/
     }
+    }
+    @FXML
+    private void remise() {
+        try {
+            BookempService s = new BookempService();
+            Bookemp B = new Bookemp();
+            B.setISBN(this.tfISBN.getText());
+            s.remise(Double.parseDouble(this.tfprix.getText()) , B.getISBN());
+         
+            
+            s.sendMail2();
+        } catch (Exception ex) {
+            Logger.getLogger(BookempController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+}
 
 
 

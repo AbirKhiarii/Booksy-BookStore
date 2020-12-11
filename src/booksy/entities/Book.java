@@ -25,7 +25,7 @@ public class Book {
     private String podcast ;
     private int categorie;
 
-    public Book(String ISBN, String titre, String auteur, String description, Date edition, double prix, int quantite, String image, String marque, String versionpdf, String podcast,int categorie) {
+    public Book(String ISBN, String titre, String auteur, String description, Date edition, double prix, int quantite, String image, String marque, String podcast,int categorie) {
         this.ISBN = ISBN;
         this.titre = titre;
         this.auteur = auteur;
@@ -35,7 +35,6 @@ public class Book {
         this.quantite = quantite;
         this.image = image;
         this.marque = marque;
-        this.versionpdf = versionpdf;
         this.podcast = podcast;
         this.categorie=categorie;
     }

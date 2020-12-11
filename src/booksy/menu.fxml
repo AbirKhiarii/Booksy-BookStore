@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="327.0" prefWidth="705.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="booksy.MenuController">
+   <children>
+      <TableView fx:id="table" layoutX="204.0" layoutY="99.0" onMouseClicked="#displayData" prefHeight="66.0" prefWidth="489.0">
+        <columns>
+          <TableColumn fx:id="id" prefWidth="37.0" text="ID" />
+            <TableColumn fx:id="nom" prefWidth="71.0" text="Nom" />
+            <TableColumn fx:id="prenom" prefWidth="69.0" text="Prenom" />
+            <TableColumn fx:id="email" prefWidth="92.0" text="Email" />
+            <TableColumn fx:id="mdp" prefWidth="81.0" text="MDP" />
+            <TableColumn fx:id="telephone" prefWidth="82.0" text="Telephone" />
+            <TableColumn fx:id="sexe" prefWidth="70.0" text="Sexe" />
+        </columns>
+      </TableView>
+      <Button fx:id="btnm" layoutX="537.0" layoutY="167.0" mnemonicParsing="false" onAction="#handleButtonAction" style="-fx-background-color: #2F323f;" text="Modifier" textFill="#f5f0f0" />
+      <Button fx:id="btns" layoutX="606.0" layoutY="167.0" mnemonicParsing="false" onAction="#handleButtonAction" style="-fx-background-color: #2F323f;" text="Supprimer" textFill="#f8f6f6" />
+      <VBox layoutX="14.0" layoutY="72.0" prefHeight="239.0" prefWidth="78.0" spacing="20.0">
+         <children>
+            <Label text="ID" />
+            <Label text="Nom" />
+            <Label text="Prenom" />
+            <Label text="Sexe" />
+            <Label text="Email" />
+            <Label text="Mot de passe" />
+            <Label text="Telephone" />
+         </children>
+      </VBox>
+      <TextField fx:id="tfid" layoutX="92.0" layoutY="72.0" prefHeight="25.0" prefWidth="105.0" />
+      <TextField fx:id="tfnom" layoutX="92.0" layoutY="107.0" prefHeight="25.0" prefWidth="105.0" />
+      <TextField fx:id="tfprenom" layoutX="92.0" layoutY="145.0" prefHeight="25.0" prefWidth="105.0" />
+      <TextField fx:id="tfsexe" layoutX="92.0" layoutY="179.0" prefHeight="25.0" prefWidth="105.0" />
+      <TextField fx:id="tfemail" layoutX="92.0" layoutY="217.0" prefHeight="25.0" prefWidth="105.0" />
+      <TextField fx:id="tfmot" layoutX="92.0" layoutY="252.0" prefHeight="25.0" prefWidth="105.0" />
+      <TextField fx:id="tfnumero" layoutX="92.0" layoutY="287.0" prefHeight="25.0" prefWidth="105.0" />
+      <Label fx:id="l" layoutX="144.0" layoutY="6.0" text="label" visible="false" />
+      <Label layoutX="353.0" layoutY="67.0" text="Vos informations">
+         <font>
+            <Font name="System Bold Italic" size="24.0" />
+         </font></Label>
+      <HBox layoutX="400.0" prefHeight="66.0" prefWidth="305.0" spacing="20.0" style="-fx-background-color: #2F323f;">
+         <children>
+            <Label text="Gérer votre profile" textFill="#fff9f9" underline="true">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label text="page d'accueil" textFill="#eeebeb" />
+            <Button fx:id="bts" mnemonicParsing="false" onAction="#logout" prefHeight="25.0" prefWidth="64.0" style="-fx-background-color: #2F323f;" text="Sign out" textFill="#f8f3f3" />
+         </children>
+      </HBox>
+      <HBox prefHeight="66.0" prefWidth="401.0" style="-fx-background-color: #2F323f;">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" text="Bienvenue à Booksy" textFill="#e8e3e3">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

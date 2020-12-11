@@ -1,23 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="booksy.AuthentificationController">
+<AnchorPane id="AnchorPane" prefHeight="376.0" prefWidth="351.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="booksy.AuthentificationController">
    <children>
-      <Button layoutX="285.0" layoutY="265.0" mnemonicParsing="false" onAction="#inscrire" text="S'inscrire" />
-      <VBox layoutX="121.0" layoutY="121.0" prefHeight="62.0" prefWidth="87.0" spacing="25.0">
+      <VBox layoutX="121.0" layoutY="121.0" prefHeight="62.0" prefWidth="87.0" spacing="25.0" />
+      <Button fx:id="btna" layoutX="111.0" layoutY="294.0" mnemonicParsing="false" onAction="#login" style="-fx-background-color: #2F323f;" text="Se connecter" textFill="#eae7e7" />
+      <Button fx:id="btn" layoutX="238.0" layoutY="294.0" mnemonicParsing="false" onAction="#initialiser" prefHeight="25.0" prefWidth="78.0" style="-fx-background-color: #2F323f;" text="Annuler" textFill="#ebe8e8" />
+      <Hyperlink layoutX="154.0" layoutY="330.0" onAction="#inscrir" prefHeight="23.0" prefWidth="126.0" text="Créer un compte??" textFill="#2f323f" />
+      <VBox alignment="CENTER" layoutX="-10.0" prefHeight="161.0" prefWidth="413.0" style="-fx-background-color: #2F323f;">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="file:/C:/Users/Hamza/OneDrive/Bureau/téléchargement.png" />
+               </image>
+            </ImageView>
+            <Label alignment="BOTTOM_CENTER" prefHeight="50.0" prefWidth="254.0" text="Welcome to our App" textFill="#fcf5f5">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <VBox layoutX="22.0" layoutY="211.0" prefHeight="53.0" prefWidth="100.0" spacing="30.0">
          <children>
             <Label prefHeight="17.0" prefWidth="56.0" text="       Email" textAlignment="RIGHT" />
             <Label text="  Mot de passe" />
          </children>
       </VBox>
-      <TextField fx:id="tfemail" layoutX="241.0" layoutY="115.0" />
-      <TextField fx:id="tfmot" layoutX="241.0" layoutY="158.0" />
-      <Button fx:id="btna" layoutX="215.0" layoutY="221.0" mnemonicParsing="false" text="Se connecter" />
-      <Button fx:id="btn" layoutX="316.0" layoutY="221.0" mnemonicParsing="false" onAction="#initialiser" prefHeight="25.0" prefWidth="78.0" text="Annuler" />
+      <VBox layoutX="127.0" layoutY="211.0" prefHeight="83.0" prefWidth="165.0" spacing="20.0">
+         <children>
+            <TextField fx:id="tfemail" />
+            <TextField fx:id="tfmot" />
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

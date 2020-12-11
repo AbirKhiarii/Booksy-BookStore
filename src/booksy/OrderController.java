@@ -3,10 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package booksy.controller;
+package booksy;
 
 import booksy.entities.Commande;
 import booksy.service.ServiceCommande;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.io.FileOutputStream;
 import java.net.URL;
 import java.sql.Date;
 import java.text.ParseException;
@@ -24,12 +34,14 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 /**
  *
  * @author lenovo
  */
 public class OrderController implements Initializable {
+    private Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,Font.BOLD);
     
     private Label label;
     @FXML
@@ -59,6 +71,8 @@ public class OrderController implements Initializable {
     private Button bmodifier;
     @FXML
     private Button bsupprimer;
+    @FXML
+    private Button bImprimer;
     
     private void handleButtonAction(ActionEvent event) {
         System.out.println("You clicked me!");
@@ -133,6 +147,97 @@ public class OrderController implements Initializable {
             Logger.getLogger(OrderController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    @FXML
+    private void displayData(MouseEvent event) {
+        Commande lv=this.table.getSelectionModel().getSelectedItem();
+        if(lv!=null)
+        {
+            this.tfnumCommande.setText(Integer.toString(lv.getNumCommande()));
+            this.tfDate.setText(lv.getDate().toString());
+            this.tfModePaiement.setText(lv.getModepaiement());
+            this.tfStatut.setText(lv.getStatut());
+
+
+        }
+    }
+
+    @FXML
+    private void genererFacture(ActionEvent event) {
+        Document document = new Document(PageSize.A4);
+        String value1=tfnumCommande.getText();
+        String value2=tfDate.getText();
+        String value3=tfModePaiement.getText();
+        
+        PdfPTable table = new PdfPTable(3);
+        
+        try {
+        PdfWriter.getInstance(document, new FileOutputStream("Facture.pdf"));
+        document.open();
+        Paragraph para= new Paragraph("Facture de commande",catFont);
+        para.setAlignment(Element.ALIGN_RIGHT);
+        addEmptyLine(para, 2);
+        document.add(para);
+        
+        para=new Paragraph("BookStore", catFont);
+        para.setAlignment(Element.ALIGN_LEFT);
+        addEmptyLine(para, 2);
+        document.add(para);
+        
+        para=new Paragraph("Esprit Charguia");
+        para.setAlignment(Element.ALIGN_LEFT);
+        addEmptyLine(para, 2);
+        document.add(para);
+        
+        para=new Paragraph("Mme/Mr XXXXXX XXXXXX");
+        para.setAlignment(Element.ALIGN_RIGHT);
+        addEmptyLine(para, 5);
+        document.add(para);
+        
+        PdfPCell c1 = new PdfPCell(new Phrase("Numero de commande"));
+        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+        table.addCell(c1);
+
+        c1 = new PdfPCell(new Phrase("Date du commande"));
+        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+        table.addCell(c1);
+
+        c1 = new PdfPCell(new Phrase("Mode de paiement "));
+        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+        table.addCell(c1);
+        table.setHeaderRows(1);
+
+        table.addCell(value1);
+        table.addCell(value2);
+        table.addCell(value3);
+        table.addCell("");
+        table.addCell("");
+        table.addCell("");
+        addEmptyLine(para, 5);
+        document.add(table);
+        addEmptyLine(para, 5);
+
+        
+        para=new Paragraph("Facture en dinars tunisien");
+        para.setAlignment(Element.ALIGN_CENTER);
+        document.add(para);
+        
+        para=new Paragraph("Total TTC       500,55");
+        para.setAlignment(Element.ALIGN_RIGHT);
+        document.add(para);
+        
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        document.close();
+        
+    }
+     private static void addEmptyLine(Paragraph para, int number) {
+        for (int i = 0; i < number; i++) {
+            para.add(new Paragraph(" "));
+        }
+     }
+    
 
     
 }

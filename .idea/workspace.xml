@@ -2,15 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bb806c65-858a-466f-aaf8-2d67903237c7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/booksy/FXMLDocumentController_LAV.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/booksy/FXMLDocument_LAV.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/booksy/entities/livreAVendre.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/booksy/interfaces/LAVInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/booksy/service/LAVService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/booksy/Booksy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/booksy/Booksy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/booksy/utils/MyConnexion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/booksy/utils/MyConnexion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/manifest.mf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nbproject/UPDATED.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nbproject/build-impl.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nbproject/genfiles.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nbproject/jfx-impl.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nbproject/jfx-impl_backup.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nbproject/private/private.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nbproject/private/private.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nbproject/private/retriever/catalog.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nbproject/project.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/booksy/Booksy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/booksy/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,22 +33,25 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../mysql-connector-java-5.1.49.jar" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.JavaFX" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Booksy" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="booksy.Booksy" />
+      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <module name="Booksy-BookStore" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="booksy.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="booksy.Main" />
+      <module name="Booksy-BookStore" />
+      <option name="PROGRAM_PARAMETERS" value="test" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -61,8 +67,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.Booksy" />
+      <item itemvalue="Application.Main" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.Booksy" />
       </list>
     </recent_temporary>
@@ -75,7 +86,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1607517010709</updated>
-      <workItem from="1607517019667" duration="2906000" />
+      <workItem from="1607517019667" duration="5375000" />
     </task>
     <servers />
   </component>

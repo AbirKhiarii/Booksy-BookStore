@@ -16,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.chart.PieChart;
 
 /**
  *
@@ -30,13 +31,16 @@ public class BookService implements InterfaceBookService{
     }
     
     
-    @Override
-    public void ajouterLivre(Book p) {
-      
+    
+   @Override
+    public Boolean ajouterLivre(Book p) {
+      Boolean test=false;
         
         try {
            String req;
-            req = "INSERT INTO booktobuy (ISBN,titre,auteur,description,edition,prix,quantite,image,marque,versionpdf ,podcast,Categorie_id )values(?,?,?,?,?,?,?,?,?,?,?,?)";
+            req = "INSERT INTO booktobuy "
+                    + "(ISBN,titre,auteur,description,edition,prix,quantite,image,marque,podcast,Categorie_id, versionpdf )"
+                    + "values(?,?,?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement ps= cnx.getConnection().prepareStatement(req);
            
             ps.setObject(1,p.getISBN());
@@ -48,15 +52,16 @@ public class BookService implements InterfaceBookService{
             ps.setObject(7,p.getQuantite() );
             ps.setObject(8,p.getImage() );
             ps.setObject(9,p.getMarque());
-            ps.setObject(10,p.getVersionpdf());
-            ps.setObject(11,p.getPodcast());
-            ps.setObject(12,p.getCategorie());
+            ps.setObject(12,p.getVersionpdf());
+            ps.setObject(10,p.getPodcast());
+            ps.setObject(11,p.getCategorie());
             ps.executeUpdate();
             System.out.println("book ajouté");
+            test= true ;
         } catch (SQLException ex) {
             Logger.getLogger(BookService.class.getName()).log(Level.SEVERE, null, ex);
             ex.printStackTrace();
-        }
+        }return test ;
         
     }
    
@@ -82,9 +87,7 @@ public class BookService implements InterfaceBookService{
             ResultSet rs=s.executeQuery(req);
             while (rs.next())
             { Book b = new Book() ;
-                //System.out.println("ISBN "+rs.getString("ISBN")+"titre"+rs.getString("titre")+"auteur "+
-                   // rs.getString("auteur")+"edition"+rs.getString("edition")+"resumé"+rs.getString("resume")+
-                    //"prix"+rs.getDouble("prix")+"code à barre"+rs.getInt("codebarre"));
+                
                     b.setISBN(rs.getString("ISBN"));
                     b.setTitre(rs.getString("titre"));
                     b.setAuteur(rs.getString("auteur"));
@@ -104,4 +107,102 @@ public class BookService implements InterfaceBookService{
         }
         return l;
     } 
+    
+     public ObservableList<PieChart.Data> getSearch(String p){
+         ObservableList<PieChart.Data> data =FXCollections.observableArrayList();
+       try {
+           String req="select COUNT(*) from booktobuy where auteur ='"+p+"'";
+           String req1="select COUNT(*) from booktobuy";
+           Statement s = cnx.getConnection().createStatement();
+           ResultSet rs=s.executeQuery(req);
+           if (rs.next())
+           {int count =rs.getInt(1);
+            data.add(new PieChart.Data("Total Book "+p+" ,"+count+")",count));
+           }
+           rs=s.executeQuery(req1);
+           if (rs.next())
+           {int count =rs.getInt(1);
+            data.add(new PieChart.Data("Total total ("+count+")",count));
+           }
+       } catch (SQLException ex) {
+           Logger.getLogger(BookService.class.getName()).log(Level.SEVERE, null, ex);
+       }
+       return data;
+    }
+    /*public void ajouterPdf(String p)
+    {  try {
+        String req = "Insert into booktobuy(versionpdf)Values(?);";
+        PreparedStatement ps= cnx.getConnexion().prepareStatement(req);
+        ps.setObject(1,p);
+       } catch (SQLException ex) {
+           Logger.getLogger(BookService.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }*/
+     public String afficherpdf(String isbn)
+     {String c="";
+         try {
+        String req = "select versionpdf from booktobuy where ISBN='"+isbn+"'";
+        Statement s = cnx.getConnection().createStatement();
+            ResultSet rs=s.executeQuery(req);
+            
+            while (rs.next())
+            {
+                c=(rs.getString("versionpdf"));}
+            
+    
+       } catch (SQLException ex) {
+           Logger.getLogger(BookService.class.getName()).log(Level.SEVERE, null, ex);
+       }
+       
+     return c;
+     }
+        public String afficherimage(String isbn)
+     {String c="";
+         try {
+        String req = "select image from booktobuy where ISBN='"+isbn+"'";
+        Statement s = cnx.getConnection().createStatement();
+            ResultSet rs=s.executeQuery(req);
+            
+            while (rs.next())
+            {
+                c=(rs.getString("image"));}
+            
+    
+       } catch (SQLException ex) {
+           Logger.getLogger(BookService.class.getName()).log(Level.SEVERE, null, ex);
+       }
+       
+     return c;
+     }
+
+    
+    public void modifier(Book B,String isbn) {
+      /* try{   ISBN,titre,auteur,description,edition,prix,quantite,image,marque,podcast,Categorie_id, versionpdf
+       String req = " UPDATE booktobuy SET ISBN`=?,auteur`=?,`titre`=?,`marque`=?,`description`=?,`quantite`=?,`image`=? ,`prix`=?,`edition`=? WHERE ISBN="+"'"+isbn+"'";
+            PreparedStatement ps =cnx.getConnexion().prepareStatement(req);
+          
+              
+            ps.setObject(1,B.getISBN());
+            ps.setObject(2,B.getTitre());
+            ps.setObject(3,B.getAuteur());
+            ps.setObject(4,B.getDescription());
+            ps.setDate(5,B.getEdition());
+            ps.setObject(6,B.getPrix());
+            ps.setObject(7,B.getQuantite() );
+            ps.setObject(8,B.getImage() );
+            ps.setObject(9,B.getMarque());
+            ps.setObject(12,B.getVersionpdf());
+            ps.setObject(10,B.getPodcast());
+            ps.setObject(11,B.getCategorie());
+           
+            
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+    }
+    }*/
+
+  
+    
+}
 }

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="929.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="booksy.GraphController">
+   <children>
+      <Accordion layoutX="300.0" layoutY="107.0" />
+      <Pane fx:id="Containerr" layoutX="35.0" layoutY="74.0" prefHeight="366.0" prefWidth="720.0" style="-fx-background-color: grey;">
+         <children>
+            <HBox fx:id="containersearch" layoutX="69.0" layoutY="109.0" prefHeight="218.0" prefWidth="637.0">
+               <children>
+                  <Button mnemonicParsing="false" onMouseClicked="#calcul" text="chercher">
+                     <HBox.margin>
+                        <Insets left="50.0" top="150.0" />
+                     </HBox.margin>
+                  </Button>
+                  <TextField fx:id="tfRechercher">
+                     <HBox.margin>
+                        <Insets left="-90.0" top="90.0" />
+                     </HBox.margin></TextField>
+               </children>
+            </HBox>
+            <Label layoutX="223.0" layoutY="45.0" text="Livre Disponible par Auteur" textFill="WHITE">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Label>
+            <Button fx:id="retour" layoutX="-1.0" layoutY="1.0" mnemonicParsing="false" onMouseClicked="#retour" text="&lt;-" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

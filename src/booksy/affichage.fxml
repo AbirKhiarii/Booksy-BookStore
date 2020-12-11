@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="929.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="booksy.AffichageController">
+   <children>
+      <TableView fx:id="table" layoutX="13.0" layoutY="321.0" onMouseClicked="#displayData" prefHeight="296.0" prefWidth="903.0">
+         <columns>
+            <TableColumn fx:id="isbn" prefWidth="75.0" text="ISBN" />
+            <TableColumn fx:id="titre" prefWidth="75.0" text="Titre" />
+            <TableColumn fx:id="auteur" prefWidth="75.0" text="Auteur" />
+            <TableColumn fx:id="edition" prefWidth="75.0" text="Edition" />
+            <TableColumn fx:id="prix" prefWidth="75.0" text="Prix" />
+            <TableColumn fx:id="marque" prefWidth="75.0" text="Marque" />
+            <TableColumn fx:id="quantite" prefWidth="75.0" text="Quantité" />
+            <TableColumn fx:id="image" prefWidth="75.0" text="Image" />
+            <TableColumn fx:id="version" prefWidth="75.0" text="Version" />
+            <TableColumn fx:id="podcast" prefWidth="75.0" text="Podcast" />
+            <TableColumn fx:id="resume" prefWidth="75.0" text="Résumé" />
+            <TableColumn fx:id="Categorie" prefWidth="75.0" text="Categorie" />
+         </columns>
+      </TableView>
+      <TextField fx:id="tfISBN" layoutX="145.0" layoutY="81.0" />
+      <Label fx:id="ftISBN" layoutX="54.0" layoutY="80.0" prefHeight="17.0" prefWidth="50.0" text="ISBN">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfAuteur" layoutX="593.0" layoutY="82.0" />
+      <TextField fx:id="tfEdition" layoutX="145.0" layoutY="124.0" />
+      <Label fx:id="ftAuteur" layoutX="312.0" layoutY="82.0" prefHeight="26.0" prefWidth="59.0" text="Auteur">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="ftEdition" layoutX="50.0" layoutY="124.0" prefHeight="26.0" prefWidth="62.0" text="Edition">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="ftResume" layoutX="42.0" layoutY="246.0" prefHeight="26.0" prefWidth="62.0" text="Résumé">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="tfResume" layoutX="148.0" layoutY="247.0" prefHeight="50.0" prefWidth="382.0" />
+      <TextField fx:id="tfPrix" layoutX="376.0" layoutY="125.0" />
+      <TextField fx:id="tfTitre" layoutX="376.0" layoutY="81.0" />
+      <TextField fx:id="tfMarque" layoutX="593.0" layoutY="126.0" />
+      <Label fx:id="ftMarque" layoutX="533.0" layoutY="125.0" text="Marque">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfQuantite" layoutX="145.0" layoutY="173.0" />
+      <Label layoutX="46.0" layoutY="173.0" text="Quantité">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfImage" layoutX="376.0" layoutY="174.0" />
+      <TextField fx:id="tfVersion" layoutX="593.0" layoutY="174.0" />
+      <Label layoutX="318.0" layoutY="175.0" prefHeight="21.0" prefWidth="59.0" text="Image">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="533.0" layoutY="175.0" prefHeight="21.0" prefWidth="59.0" text="Version">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfPodcast" layoutX="145.0" layoutY="212.0" />
+      <Label fx:id="ftpodcast" layoutX="45.0" layoutY="214.0" prefHeight="21.0" prefWidth="66.0" text="Podcast">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfCategorie" layoutX="376.0" layoutY="212.0" />
+      <Label fx:id="ftPrix" layoutX="316.0" layoutY="124.0" prefHeight="26.0" prefWidth="50.0" text="Prix">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="ftISBN1" layoutX="538.0" layoutY="82.0" prefHeight="17.0" prefWidth="50.0" text="Titre">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="ftCategorie" layoutX="299.0" layoutY="214.0" prefHeight="21.0" prefWidth="72.0" text="Categorie">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Button fx:id="btafficherpdf" layoutX="616.0" layoutY="247.0" mnemonicParsing="false" onMouseClicked="#OpenPDF" text="afficherPDF" />
+      <Button fx:id="btsupp" layoutX="717.0" layoutY="247.0" mnemonicParsing="false" onAction="#SupprimerLivreAchat" text="Supprimer" />
+      <Button fx:id="btmodif" layoutX="810.0" layoutY="247.0" mnemonicParsing="false" onAction="#ModifierLivre" prefHeight="25.0" prefWidth="72.0" text="Modifier" />
+      <Pane prefHeight="65.0" prefWidth="935.0" style="-fx-background-color: #2F323f;">
+         <children>
+            <Label layoutX="850.0" layoutY="10.0" text="Livre" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="31.0" />
+               </font>
+            </Label>
+            <Button layoutY="1.0" mnemonicParsing="false" onMouseClicked="#retour" text="&lt;-" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
