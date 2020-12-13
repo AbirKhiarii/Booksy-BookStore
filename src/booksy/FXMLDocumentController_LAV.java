@@ -23,6 +23,14 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import booksy.entities.livreAVendre;
 import booksy.utils.MyConnexion;
+import java.io.IOException;
+import javafx.collections.FXCollections;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
+import javafx.stage.Stage;
 
 
 
@@ -33,8 +41,6 @@ import booksy.utils.MyConnexion;
  */
 public class FXMLDocumentController_LAV implements Initializable {
     
-    @FXML
-    private Label label;
     @FXML
     private TableView<livreAVendre> tbLivresAVendre;
     @FXML
@@ -83,6 +89,16 @@ public class FXMLDocumentController_LAV implements Initializable {
     private Button btnSupprimer;
     @FXML
     private Button btnModifier;
+    private TextField tfDeviseE;
+    private ComboBox<String> cmbDevise;
+    
+                ObservableList<String> l= FXCollections.observableArrayList("Euro","USD");
+    private TextField tfDeviseS;
+    @FXML
+    private Label label;
+    @FXML
+    private Button btnConsulterLivre;
+
     
     @FXML
     private void handleButtonAction(ActionEvent event) {
@@ -104,6 +120,8 @@ public class FXMLDocumentController_LAV implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         showBooks();
+        // this.cmbDevise.setItems(l);
+        //this.cmbDevise.setValue("Euro");
     }    
      public void showBooks()
     {
@@ -182,12 +200,30 @@ public class FXMLDocumentController_LAV implements Initializable {
                        this.tfImage.setText(lv.getImage());
                        this.tfMarque.setText(lv.getMarque());
                        this.tfEtat.setText(lv.getEtat());
-
+this.tfDeviseE.setText(Double.toString(lv.getPrix()));
 
 
             
 
         }
     }
+
+  
+
+    @FXML
+    private void ConsulterLivre(ActionEvent event) throws IOException {
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("ConsulterLAV.fxml"));
+             Parent root1=(Parent) loader.load();
+             Stage stage=new Stage();
+             stage.setScene(new Scene(root1));
+             stage.show();
+    }
+    
+    
+
+
+
+
+    
     
 }

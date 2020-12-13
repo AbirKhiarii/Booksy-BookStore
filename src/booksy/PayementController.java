@@ -13,56 +13,66 @@ import com.stripe.model.Charge;
 import com.stripe.model.Customer;
 import com.stripe.model.Token;
 import com.stripe.param.CustomerRetrieveParams;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
+import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javax.swing.JOptionPane;
 
 /**
+ * FXML Controller class
  *
  * @author user
  */
-public class Booksy extends Application {
-    
-    
-    @Override
-    public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument_LAV.fxml"));
-        
-        Scene scene = new Scene(root);
-        
-        stage.setScene(scene);
-        stage.show();
-        
-    }
+public class PayementController implements Initializable {
+
+    @FXML
+    private TextField tfNumCarte;
+    @FXML
+    private TextField tfExpDate;
+    @FXML
+    private TextField tfExpYear;
+    @FXML
+    private TextField tfCvc;
+    @FXML
+    private Button btnPayer;
+    @FXML
+    private TextField tfmail;
+    @FXML
+    private TextField tfSomme;
 
     /**
-     * @param args the command line arguments
+     * Initializes the controller class.
      */
-    public static void main(String[] args) throws StripeException  {
-       launch(args);
-        //System.out.println("hellooooooooooo");
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+    }  
 
-      /*  Stripe.apiKey="sk_test_51HwAVkJlvQg8WkmgXNnqAn38uIH3YNV4Md1TpBIvWDZXX08jKCcHEOqYXVstSpHXqeElp3yKuOUzz1ukwocsXsHB00ePCvntrj";
+    @FXML
+    private void payer(ActionEvent event) throws StripeException {
+        
+        
+    Stripe.apiKey="sk_test_51HwAVkJlvQg8WkmgXNnqAn38uIH3YNV4Md1TpBIvWDZXX08jKCcHEOqYXVstSpHXqeElp3yKuOUzz1ukwocsXsHB00ePCvntrj";
      //create user
          Map<String, Object> customerParameter= new HashMap<String, Object>();
-        customerParameter.put("email", "a@gmail.com");
+        customerParameter.put("email", this.tfmail.getText());
         Customer c =Customer.create(customerParameter);
         System.out.println(c.getId());
-     Customer a =Customer.retrieve("cus_IXcJ2viPwASdjZ");
+     Customer a =Customer.retrieve(c.getId());
         System.out.println(a);
                     
        //ajouter card a l'utilisateur
          Map<String, Object> cardParam= new HashMap<String, Object>();
-        cardParam.put("number", "4242424242424242");
-        cardParam.put("exp_month", "11");
-        cardParam.put("exp_year", "2022");
-        cardParam.put("cvc", "123");
+        cardParam.put("number", this.tfNumCarte.getText());
+        cardParam.put("exp_month", this.tfExpDate.getText());
+        cardParam.put("exp_year", this.tfExpYear.getText());
+        cardParam.put("cvc", this.tfCvc.getText());
               Map<String, Object> tokenParam= new HashMap<String, Object>();
               tokenParam.put("card", cardParam);
               Token token=Token.create(tokenParam);
@@ -74,14 +84,19 @@ public class Booksy extends Application {
        
        //Charge Customer
        Map<String, Object> chargeParam= new HashMap<String, Object>();
-        chargeParam.put("amount", "50");
+        chargeParam.put("amount", this.tfSomme.getText());
         chargeParam.put("currency", "usd");
         chargeParam.put("customer", a.getId());
         Charge.create(chargeParam);
      Gson gson= new GsonBuilder().setPrettyPrinting().create();
-                    System.out.println(gson.toJson(a));*/
+                    System.out.println(gson.toJson(a));
+                    
+
+        JOptionPane.showMessageDialog(null, "Payement avec succés");
 
         
     }
+    
+    
     
 }
